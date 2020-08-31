@@ -6,8 +6,18 @@ class TestCategory(models.Model):
 
     class Meta:
         ordering = ('name',)
-        verbose_name = 'category'
-        verbose_name_plural = 'categories'
+        verbose_name = 'test_category'
 
     def __str__(self):
         return self.name
+
+
+class Ticket(models.Model):
+
+    category = models.ManyToManyField(TestCategory)
+    text = models.TextField(blank=False)
+    image = models.ImageField(upload_to='images/%Y/%m/%d/')
+
+    def __str__(self):
+        result = str(self.text)[0:30]+'...'
+        return result
