@@ -18,8 +18,8 @@ class Ticket(models.Model):
     title = models.CharField(max_length=50)
     text = models.TextField(blank=False)
     image = models.ImageField(upload_to='images/%Y/%m/%d/')
-    answers = models.TextField(default=None)
-    correct_answer = models.TextField(default=None)
+    answers = models.CharField(max_length=64, default='', blank=True)
+    correct_answer = models.TextField(default='', blank=True)
 
     def __str__(self):
        return self.title
