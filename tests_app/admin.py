@@ -10,4 +10,5 @@ class TestCategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Ticket)
 class TicketAdmin(admin.ModelAdmin):
+
     pass

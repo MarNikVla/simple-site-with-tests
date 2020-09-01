@@ -14,10 +14,12 @@ class TestCategory(models.Model):
 
 class Ticket(models.Model):
 
-    category = models.ManyToManyField(TestCategory)
+    category = models.ForeignKey(TestCategory, on_delete=models.CASCADE, default=None)
+    title = models.CharField(max_length=50)
     text = models.TextField(blank=False)
     image = models.ImageField(upload_to='images/%Y/%m/%d/')
+    answers = models.TextField(default=None)
+    correct_answer = models.TextField(default=None)
 
     def __str__(self):
-        result = str(self.text)[0:30]+'...'
-        return result
+       return self.title
