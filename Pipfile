@@ -9,7 +9,6 @@ verify_ssl = true
 django = "*"
 psycopg2 = "*"
 pillow = "*"
-form = "*"
 
 [requires]
 python_version = "3.8"

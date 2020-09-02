@@ -1,4 +1,4 @@
-import form as form
+
 from django.contrib import admin
 from django import forms
 
@@ -15,4 +15,4 @@ class TestCategoryAdmin(admin.ModelAdmin):
 @admin.register(Ticket)
 class TicketAdmin(admin.ModelAdmin):
     form = TicketAdminForm
-
+    list_display = ['title', 'category']

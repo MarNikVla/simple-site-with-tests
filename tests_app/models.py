@@ -17,8 +17,8 @@ class Ticket(models.Model):
     category = models.ForeignKey(TestCategory, on_delete=models.CASCADE, default=None)
     title = models.CharField(max_length=50)
     text = models.TextField(blank=False)
-    image = models.ImageField(upload_to='images/%Y/%m/%d/')
-    answers = models.CharField(max_length=64, default='', blank=True)
+    image = models.ImageField(upload_to='images/%Y/%m/%d/', blank=True)
+    answers = models.TextField(default='', blank=True)
     correct_answer = models.TextField(default='', blank=True)
 
     def __str__(self):
