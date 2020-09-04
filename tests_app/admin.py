@@ -3,7 +3,7 @@ from django.contrib import admin
 from django import forms
 
 from .forms import TicketAdminForm
-from .models import TestCategory, Ticket
+from .models import TestCategory, Ticket, Question
 
 # class TicketAdminForm(forms.ModelForm):
 
@@ -16,3 +16,8 @@ class TestCategoryAdmin(admin.ModelAdmin):
 class TicketAdmin(admin.ModelAdmin):
     form = TicketAdminForm
     list_display = ['title', 'category']
+    prepopulated_fields = {'slug': ('title',)}
+
+@admin.register(Question)
+class QuestionAdmin(admin.ModelAdmin):
+    list_display = ['title']
