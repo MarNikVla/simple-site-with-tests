@@ -4,14 +4,23 @@
     Products
 {% endblock %}
 {% block content %}
-    <div id="sidebar">
+    <div id="sr">
         <h3>Categories</h3>
-        {% for question in ticket.questions.all %}
-            <h1>{{ question.title }}</h1>
-    {% endfor %}
-    </div>
-    <div id="main" class="product-list">
-       Products
+        <form>
+            {% for question in ticket.questions.all %}
+                <h1>{{ question.title }}</h1>
 
+                {% for answer in question.answers_as_list %}
+                    <div class="custom-control custom-radio">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" id="{{ answer }}"
+                                   name="question id{{ question.id }}" value="{{ answer }}">
+                            <label class="custom-control-label" for="{{ answer }}">{{ answer }}</label>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            <button class="btn btn-primary" type="submit" id="submit">Сдать тест</button>
+        </form>
     </div>
 {% endblock %}

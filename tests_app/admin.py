@@ -15,9 +15,13 @@ class TestCategoryAdmin(admin.ModelAdmin):
 @admin.register(Ticket)
 class TicketAdmin(admin.ModelAdmin):
     form = TicketAdminForm
-    list_display = ['title', 'category']
+    list_display = ['title', 'category','slug']
     prepopulated_fields = {'slug': ('title',)}
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ['title']
+    fields = ['title', 'ticket']
+    list_display = ('title','get_tickets')
+
+    def get_tickets(self, obj):
+        return "\n".join([t.slug for t in obj.ticket.all()])

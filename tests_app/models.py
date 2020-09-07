@@ -16,7 +16,10 @@ class Ticket(models.Model):
 
     category = models.ForeignKey(TestCategory, on_delete=models.CASCADE, default=None, related_name='category')
     title = models.CharField(max_length=50)
-    slug = models.SlugField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200)
+
+    class Meta:
+        unique_together = ['category', 'slug']
 
 
     def __str__(self):
@@ -29,6 +32,10 @@ class Question(models.Model):
     image = models.ImageField(upload_to='images/%Y/%m/%d/', blank=True)
     answers = models.TextField(default='')
     correct_answer = models.TextField(default='')
+
+
+    def answers_as_list(self):
+        return self.answers.split('\n')
 
     def __str__(self):
         return self.title
