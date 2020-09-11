@@ -1,9 +1,8 @@
 // getAllChecked проверяет заполнены(выбраны) все ответы в вопросах (input)
 // возвращает true если заполнены все, иначе false
+// TODO переделать функцию, очень некрасиво
 function getAllChecked(selector) {
     let result = true;
-    // getChecked проверяет заполнен(выбран) отдельный ответ (input)
-    // возвращает true если заполнены все, иначе false
     function getChecked() {
         console.log($(this));
         // check = false
@@ -21,7 +20,8 @@ function getAllChecked(selector) {
 
     return result
 }
-
+// Изменяет атребут кнопки #submit
+// в зависимости от состояния getAllChecked
 function changeAttrSubmit(selector) {
     if (getAllChecked(selector) == true) {
         $('#submit').removeAttr('disabled', true)
@@ -29,4 +29,5 @@ function changeAttrSubmit(selector) {
         $('#submit').attr('disabled', true)
     }
 }
+
 setInterval(changeAttrSubmit, 2000, ('.custom-radio[id]'));

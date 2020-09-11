@@ -21,3 +21,7 @@ class TicketDetailView(DetailView):
         # ticket = self.kwargs.get('ticket_slug', '')
         q = super().get_queryset()
         return q.filter(category__slug=category)
+
+
+class ResultView(TemplateView):
+    template_name = "test_app/result.html"

@@ -130,5 +130,3 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = Path(BASE_DIR, 'media/')
-
-print(STATIC_ROOT)

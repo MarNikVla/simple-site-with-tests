@@ -6,7 +6,7 @@
 {% block content %}
     <div id="sr">
         <h3>Categories</h3>
-        <form>
+        <form action="result" method="get">
             {% for question in ticket.questions.all %}
                 <h1>{{ question.title }}</h1>
 
