@@ -1,11 +1,17 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}
-    Products
+    Результат {{ ticket.category }} {{ ticket }}
 {% endblock %}
 {% block content %}
     <div id="sr">
+        {% for key, values in question.items %}
+            <h1>{{ values }}</h1>
+        {% endfor %}
+        <h3>{{ question }}</h3>
         <h3>graTS</h3>
+
+            <h1>{{ answers }}</h1>
 
     </div>
 {% endblock %}

@@ -23,7 +23,7 @@ class Ticket(models.Model):
 
 
     def __str__(self):
-       return self.slug
+       return self.title
 
 class Question(models.Model):
     ticket = models.ManyToManyField(Ticket, related_name='questions')
