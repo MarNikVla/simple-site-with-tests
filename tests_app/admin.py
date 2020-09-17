@@ -20,8 +20,11 @@ class TicketAdmin(admin.ModelAdmin):
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
-    fields = ['title', 'ticket']
-    list_display = ('title','get_tickets')
 
-    def get_tickets(self, obj):
-        return "\n".join([t.slug for t in obj.ticket.all()])
+    list_display = ('title','get_tickets', 'get_tickets_category')
+
+    def get_tickets(self,obj):
+       return "\n".join([t.slug for t in obj.ticket.all()])
+
+    def get_tickets_category(self, obj):
+        return "\n".join([t.category.name for t in obj.ticket.all()])

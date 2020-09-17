@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tests_app',
+    'tests_app.templatetags.test_extra_tags',
 ]
 
 MIDDLEWARE = [

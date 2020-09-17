@@ -14,7 +14,7 @@ class TestCategory(models.Model):
 
 class Ticket(models.Model):
 
-    category = models.ForeignKey(TestCategory, on_delete=models.CASCADE, default=None, related_name='category')
+    category = models.ForeignKey(TestCategory, on_delete=models.CASCADE, default=None, related_name='tickets')
     title = models.CharField(max_length=50)
     slug = models.SlugField(max_length=200)
 
@@ -23,7 +23,8 @@ class Ticket(models.Model):
 
 
     def __str__(self):
-       return self.title
+        str = self.title+self.category.name
+        return self.title+" "+self.category.name.replace("Билеты", "")
 
 class Question(models.Model):
     ticket = models.ManyToManyField(Ticket, related_name='questions')
@@ -35,7 +36,9 @@ class Question(models.Model):
 
 
     def answers_as_list(self):
-        return self.answers.split('\n')
+        result = [answer.rstrip() for answer in self.answers.split('\n')]
+        return result
+        # return self.answers.split('\n')
 
     def __str__(self):
         return self.title

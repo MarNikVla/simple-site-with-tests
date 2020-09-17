@@ -15,11 +15,11 @@
                 {% for question in ticket.questions.all %}
                      <hr>
                     <h3>{{ question.title }}</h3>
-                    <div class="custom-control custom-radio" id="{{ question.id }}">
+                    <div class="custom-control custom-radio" id={{ question.id }}>
                         {% for answer in question.answers_as_list %}
                             <div class="custom-control custom-radio">
                                 <input type="radio" class="custom-control-input" id="{{ answer }}"
-                                       name="{{ question.id }}" value="{{ answer }}">
+                                       name={{ question.id }} value="{{ answer }}">
                                 <label class="custom-control-label" for="{{ answer }}">{{ answer }}</label>
                             </div>
                         {% endfor %}
@@ -31,6 +31,6 @@
     </div><!-- /.blog-post -->
 
 
-
+<script src="{% static "tests_app/js/test_list.js" %}"></script>
 
 {% endblock %}

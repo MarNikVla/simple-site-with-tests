@@ -1,17 +1,53 @@
 {% extends "base.html" %}
 {% load static %}
+{% load test_extra_tags %}
 {% block title %}
-    Результат {{ ticket.category }} {{ ticket }}
+    Результат {{ ticket }}
 {% endblock %}
 {% block content %}
     <div id="sr">
-        {% for key, values in question.items %}
-            <h1>{{ values }}</h1>
-        {% endfor %}
-        <h3>{{ question }}</h3>
+        {% if result %}
+            <h3>Поздравляю ВЫ Сдали Тест</h3>
+        {% else %}
+            <h3> К сожалению Вы не сдали((</h3>
+        {% endif %}
+        <h3>Правильные ответы: {{ correct_answers|length }} из {{ answers|length }} </h3>
+        <h3> Неправильные ответы: {{ incorrect_answers|length }}</h3>
+        <h3> длина ответы: {{ answers|length }}</h3>
+        <h3>{{ result }}</h3>
         <h3>graTS</h3>
-
-            <h1>{{ answers }}</h1>
-
     </div>
+    <div class="blog-main">
+        <h3 class="pb-4 mb-4 font-italic border-bottom">
+            {{ ticket.category }}
+        </h3>
+        <div class="blog-post">
+            <h1>{{ ticket.title }}</h1>
+            <hr>
+
+            {% for question in ticket.questions.all %}
+                <hr>
+                <h3>{{ question.title }}</h3>
+                <div>
+                    <ul class="list-group">
+                        {% for answer in question.answers_as_list %}
+
+                            {% if answer == incorrect_answers|index:question.id %}
+                                <li class="list-group-item list-group-item-danger">{{ answer }}</li>
+                            {% elif answer == correct_answers|index:question.id %}
+                                <li class="alert alert-success mb-0" role="alert"> {{ answer }}</li>
+                            {% elif answer == all_correct_answers|index:question.id %}
+                                <li class="alert alert-success mb-0" role="alert">{{ answer }}</li>
+                            {% else %}
+                                <li class="list-group-item">{{ answer }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+
+
+        </div>
+    </div><!-- /.blog-post -->
+
 {% endblock %}
