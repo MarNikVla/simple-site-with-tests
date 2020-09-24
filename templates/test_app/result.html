@@ -4,34 +4,46 @@
 {% block title %}
     Результат {{ ticket }}
 {% endblock %}
-{% block content %}
-    <div id="sr">
-        {% if result %}
-            <h3>Поздравляю ВЫ Сдали Тест</h3>
-        {% else %}
-            <h3> К сожалению Вы не сдали((</h3>
-        {% endif %}
-        <h3>Правильные ответы: {{ correct_answers|length }} из {{ answers|length }} </h3>
-        <h3> Неправильные ответы: {{ incorrect_answers|length }}</h3>
-        <h3> длина ответы: {{ answers|length }}</h3>
-        <h3>{{ result }}</h3>
-        <h3>graTS</h3>
-    </div>
-    <div class="blog-main">
-        <h3 class="pb-4 mb-4 font-italic border-bottom">
-            {{ ticket.category }}
-        </h3>
-        <div class="blog-post">
-            <h1>{{ ticket.title }}</h1>
-            <hr>
+{% block header %}
+    <div class="container">
 
+        <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
+
+            <div class="col-md-12 px-0" id="collapseCommon">
+                <p class="float-right">
+                    <a href="{% url 'index' %}">На стартовую</a>
+                </p>
+                <h1 class="display-5 font-italic">
+                    Категория {{ ticket.category.name|slice:"-3:" }}
+                    {{ ticket.title }}
+                </h1>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="text-center">
+        {% if result %}
+            <h3 class="bg-success text-white"> Поздравляю тест сдан</h3>
+        {% else %}
+            <h3 class="bg-danger text-white">Тест не сдан</h3>
+        {% endif %}
+
+        <h5 class="text-center">Правильныех ответов: {{ correct_answers|length }} из {{ answers|length }} </h5>
+
+
+    </div>
+    <div>
+        <div>
+            <h2>{{ ticket.title }}</h2>
             {% for question in ticket.questions.all %}
                 <hr>
                 <h3>{{ question.title }}</h3>
+                <img src='{{ question.image.url }}' class="rounded mx-auto d-block" alt="">
+                <h6>{{ question.text }}</h6>
                 <div>
                     <ul class="list-group">
                         {% for answer in question.answers_as_list %}
-
                             {% if answer == incorrect_answers|index:question.id %}
                                 <li class="list-group-item list-group-item-danger">{{ answer }}</li>
                             {% elif answer == correct_answers|index:question.id %}
@@ -45,9 +57,6 @@
                     </ul>
                 </div>
             {% endfor %}
-
-
         </div>
-    </div><!-- /.blog-post -->
-
+    </div>
 {% endblock %}

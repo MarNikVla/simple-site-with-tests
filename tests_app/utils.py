@@ -38,12 +38,15 @@ def get_all_correct_answers_from_db(self):
     for question in questions_from_db:
         k = question.id
         correct_answers_dict[k] = question.correct_answer
-
+    print(ticket)
     return correct_answers_dict
 
 def get_answers(self):
+
     answers = self.request.GET
-    # print("343434")
+    # answers = 0
+
+    print("answers")
     return answers
 
 def get_result(self):

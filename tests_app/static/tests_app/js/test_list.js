@@ -3,12 +3,15 @@
 // TODO переделать функцию, очень некрасиво
 function getAllChecked(selector) {
     let result = true;
+    // Если нет ни одного вопроса
+    if ($(selector).length == 0){
+        result = false
+    }
+
     function getChecked() {
-        console.log($(this));
-        // check = false
+
         $(this).each(function () {
             if ($(this).find('input:checked').val() !== undefined) {
-                console.log($(this).find('input:checked').val());
                 result = result && true
             }else {
                 result = result && false

@@ -2,10 +2,18 @@
 from django.views.generic import TemplateView, DetailView, ListView
 
 from tests_app.models import Ticket, TestCategory, Question
-from tests_app.utils import get_all_correct_answers_from_db,get_answers, get_result, get_correct_and_incorrect_answer
+from tests_app.utils import get_all_correct_answers_from_db,get_answers, \
+    get_result, get_correct_and_incorrect_answer
+from tests_app.models import TestCategory
 
-class Index(TemplateView):
+class IndexView(TemplateView):
     template_name = "base.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['categories']= TestCategory.objects.all()
+        return context
+
 
 
 # class CategoryList(ListView):
@@ -18,7 +26,6 @@ class TicketDetailView(DetailView):
 
     def get_queryset(self):
         category = self.kwargs.get('category_slug', '')
-        # ticket = self.kwargs.get('ticket_slug', '')
         q = super().get_queryset()
         return q.filter(category__slug=category)
 
@@ -28,8 +35,14 @@ class ResultView(DetailView):
     template_name = "test_app/result.html"
     context_object_name = 'ticket'
 
-    def get_context_data(self, **kwards):
-        context = super(ResultView, self).get_context_data(**kwards)
+
+    def get_queryset(self):
+        category = self.kwargs.get('category_slug', '')
+        q = super().get_queryset()
+        return q.filter(category__slug=category)
+
+    def get_context_data(self, **kwargs):
+        context = super(ResultView, self).get_context_data(**kwargs)
         answers= get_answers(self)
         result = get_result(self)
         all_correct_answers = get_all_correct_answers_from_db(self)
@@ -41,13 +54,9 @@ class ResultView(DetailView):
         context['incorrect_answers'] = incorrect_answers
         context['correct_answers'] = correct_answers
         context['all_correct_answers'] = all_correct_answers
-        # correct_answers_from_db = ticket.questions.all()
         context['answers'] = answers
 
         context['result'] = result
-
-
-
         return context
 
 
