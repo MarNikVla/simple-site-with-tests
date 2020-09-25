@@ -14,62 +14,49 @@
         {% endblock %}
     </title>
 
-{#    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/blog/">#}
-
     <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/4.5/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <!-- Favicons -->
-    <link rel="apple-touch-icon" href="https://getbootstrap.com/docs/4.5/assets/img/favicons/apple-touch-icon.png"
-          sizes="180x180">
-    <link rel="icon" href="https://getbootstrap.com/docs/4.5/assets/img/favicons/favicon-32x32.png" sizes="32x32"
-          type="image/png">
-    <link rel="icon" href="https://getbootstrap.com/docs/4.5/assets/img/favicons/favicon-16x16.png" sizes="16x16"
-          type="image/png">
-    <link rel="manifest" href="https://getbootstrap.com/docs/4.5/assets/img/favicons/manifest.json">
-    <link rel="mask-icon" href="https://getbootstrap.com/docs/4.5/assets/img/favicons/safari-pinned-tab.svg"
-          color="#563d7c">
-    <link rel="icon" href="https://getbootstrap.com/docs/4.5/assets/img/favicons/favicon.ico">
-    <meta name="msapplication-config" content="https://getbootstrap.com/docs/4.5/assets/img/favicons/browserconfig.xml">
-    <meta name="theme-color" content="#563d7c">
+    <link rel="shortcut icon" href="{% static 'tests_app/img/boat_start.jpg' %}" type="image/png">
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
     <!-- Custom styles for this template -->
 </head>
 <body>
 {% block header %}
-<div class="container">
-    <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
-        <div class="col-md-12 px-0" id="collapseCommon">
-            <h1 class="display-5 font-italic">Выберите категорию для сдачи экзамена ГИМС</h1>
+    <div class="container">
+        <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
+            <div class="col-md-12 px-0" id="collapseCommon">
+                <h1 class="display-5 font-italic">Выберите категорию для сдачи экзамена ГИМС</h1>
 
 
-            {% for category in categories %}
-                <button class="btn btn-primary col-md-3 my-3" data-toggle="collapse" aria-expanded="false"
-                        data-target="#{{ category.slug }}" aria-controls="{{ category.slug }}">{{ category.name }}
-                </button>
-            {% endfor %}
+                {% for category in categories %}
+                    <button class="btn btn-primary col-md-3 my-3" data-toggle="collapse" aria-expanded="false"
+                            data-target="#{{ category.slug }}" aria-controls="{{ category.slug }}">{{ category.name }}
+                    </button>
+                {% endfor %}
 
-            {% for category in categories %}
-                <div class="collapse" id="{{ category.slug }}" data-parent="#collapseCommon">
-                    <h3 class="pb-4 mb-4 font-italic border-bottom">
-                        {{ category.name }}
-                    </h3>
-                    <div class="btn-toolbar" role="toolbar"
-                         aria-label="Toolbar with button groups">
-                        <div class="btn-group mr-2" role="group" aria-label="First group">
-                            {% for ticket in category.tickets_as_list %}
-                                <a href="{{ ticket.get_absolute_url }}" class="btn btn-secondary" role="button"
-                                >{{ ticket.title }}</a>
-                            {% endfor %}
+                {% for category in categories %}
+                    <div class="collapse" id="{{ category.slug }}" data-parent="#collapseCommon">
+                        <h3 class="pb-4 mb-4 font-italic border-bottom">
+                            {{ category.name }}
+                        </h3>
+                        <div class="btn-toolbar" role="toolbar"
+                             aria-label="Toolbar with button groups">
+                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                                {% for ticket in category.tickets_as_list %}
+                                    <a href="{{ ticket.get_absolute_url }}" class="btn btn-secondary" role="button"
+                                    >{{ ticket.title }}</a>
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
     </div>
-</div>
 {% endblock %}
 <main role="main" class="container">
     <div class="row">
