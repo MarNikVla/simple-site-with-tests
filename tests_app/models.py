@@ -15,10 +15,8 @@ class TestCategory(models.Model):
 
     def tickets_as_list(self):
         result = [ticket for ticket in self.tickets.all().order_by('title')]
-        # print(self.tickets.all())
         print(result)
         return result
-
 
 
 class Ticket(models.Model):
@@ -29,14 +27,12 @@ class Ticket(models.Model):
     class Meta:
         unique_together = ['category', 'slug']
 
-
     def __str__(self):
-        str = self.title + self.category.name
         return self.title + " " + self.category.name.replace("Билеты", "")
 
-
     def get_absolute_url(self):
-        return reverse('ticket_detail', kwargs= {'category_slug':str(self.category.slug), 'slug': self.slug})
+        return reverse('ticket_detail', kwargs={'category_slug': str(self.category.slug),
+                                                'slug': self.slug})
 
 
 class Question(models.Model):
@@ -50,7 +46,6 @@ class Question(models.Model):
     def answers_as_list(self):
         result = [answer.rstrip() for answer in self.answers.split('\n')]
         return result
-        # return self.answers.split('\n')
 
     def __str__(self):
         return self.title

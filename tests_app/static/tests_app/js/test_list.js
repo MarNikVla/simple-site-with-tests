@@ -19,7 +19,7 @@ function getAllChecked(selector) {
             return result
         });
     }
-    $(selector).each(getChecked)
+    $(selector).each(getChecked);
 
     return result
 }

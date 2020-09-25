@@ -6,9 +6,7 @@
 {% endblock %}
 {% block header %}
     <div class="container">
-
         <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
-
             <div class="col-md-12 px-0" id="collapseCommon">
                 <p class="float-right">
                     <a href="{% url 'index' %}">На стартовую</a>
@@ -30,8 +28,6 @@
         {% endif %}
 
         <h5 class="text-center">Правильныех ответов: {{ correct_answers|length }} из {{ answers|length }} </h5>
-
-
     </div>
     <div>
         <div>
@@ -47,9 +43,9 @@
                             {% if answer == incorrect_answers|index:question.id %}
                                 <li class="list-group-item list-group-item-danger">{{ answer }}</li>
                             {% elif answer == correct_answers|index:question.id %}
-                                <li class="alert alert-success mb-0" role="alert"> {{ answer }}</li>
+                                <li class="alert alert-success mb-0"> {{ answer }}</li>
                             {% elif answer == all_correct_answers|index:question.id %}
-                                <li class="alert alert-success mb-0" role="alert">{{ answer }}</li>
+                                <li class="alert alert-success mb-0">{{ answer }}</li>
                             {% else %}
                                 <li class="list-group-item">{{ answer }}</li>
                             {% endif %}

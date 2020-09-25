@@ -54,8 +54,7 @@ ROOT_URLCONF = 'simple_site_with_tests.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [Path(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [Path(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,12 +121,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
 STATIC_ROOT = Path(BASE_DIR, 'static')
-
 STATICFILES_DIRS = [
     Path(BASE_DIR, 'tests_app/static'),
 ]
+
+# Media files (Images)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = Path(BASE_DIR, 'media/')
