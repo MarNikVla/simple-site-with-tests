@@ -18,15 +18,18 @@ class TicketAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
 
 
+# Для отображения билета в QuestionAdmin
+def get_tickets(obj):
+    return "\n".join([t.title for t in obj.ticket.all()])
+get_tickets.short_description = 'Ticket'
+
+
+# Для отображения билета в QuestionAdmin
+def get_tickets_category(obj):
+    return "\n".join([t.category.name for t in obj.ticket.all()])
+get_tickets_category.short_description = 'Category'
+
+
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
-
-    list_display = ('title', 'get_tickets', 'get_tickets_category')
-
-    @staticmethod
-    def get_tickets(obj):
-        return "\n".join([t.slug for t in obj.ticket.all()])
-
-    @staticmethod
-    def get_tickets_category(obj):
-        return "\n".join([t.category.name for t in obj.ticket.all()])
+    list_display = ('title', get_tickets, get_tickets_category)
