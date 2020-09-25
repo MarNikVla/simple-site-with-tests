@@ -24,7 +24,7 @@ SECRET_KEY = '$pri+ha_it(srsk6x)9d0b^$+bzir4ha!m*femk)=*e5e0$-i$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
