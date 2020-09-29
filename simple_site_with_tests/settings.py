@@ -24,7 +24,7 @@ if Path.is_file(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '$pri+ha_it(srsk6x)9d0b^$+bzir4ha!m*femk)=*e5e0$-i$'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
