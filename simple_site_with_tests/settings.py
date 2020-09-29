@@ -25,10 +25,12 @@ if Path.is_file(dotenv_file):
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY")
+# print(os.getenv("SECRET_KEY"))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+DEBUG = bool(os.getenv("DEBAG_GIMS_TEST"))
+# DEBUG =
+# print(bool(os.getenv("DEBAG_GIMS_TEST")))
 ALLOWED_HOSTS = ['*']
 
 # Application definition
