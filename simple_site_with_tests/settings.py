@@ -28,10 +28,10 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # print(os.getenv("SECRET_KEY"))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(os.getenv("DEBAG_GIMS_TEST"))
-# DEBUG =
-# print(bool(os.getenv("DEBAG_GIMS_TEST")))
-ALLOWED_HOSTS = ['*']
+
+DEBUG = os.getenv("DEBAG_GIMS_TEST") == "True"
+# print(DEBUG)
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS")
 
 # Application definition
 
@@ -150,8 +150,6 @@ AWS_S3_SIGNATURE_VERSION = os.getenv("AWS_S3_SIGNATURE_VERSION")
 AWS_S3_REGION_NAME = os.getenv("AWS_S3_REGION_NAME")
 
 
-
 MEDIA_URL = 'http://%s.s3.amazonaws.com/gims/' % AWS_STORAGE_BUCKET_NAME
-# print(MEDIA_URL)
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
