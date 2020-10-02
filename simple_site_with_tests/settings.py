@@ -18,19 +18,18 @@ import dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
-
+# Загружаем виртуальное окружение из .env если он существует смотри .env_example
 dotenv_file = Path(BASE_DIR, ".env")
 if Path.is_file(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY")
-# print(os.getenv("SECRET_KEY"))
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-
 DEBUG = os.getenv("DEBAG_GIMS_TEST") == "True"
-# print(DEBUG)
+
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS")
 
 # Application definition
@@ -81,22 +80,9 @@ WSGI_APPLICATION = 'simple_site_with_tests.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         # 'ENGINE': 'django.db.backends.sqlite3',
-#         # 'NAME': BASE_DIR / 'db.sqlite3',
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'simple_site_with_tests',
-#         'USER': 'postgres',
-#         'PASSWORD': 'postgres',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432',
-#
-#     }
-# }
-DATABASES = {}
+DATABASES = dict()
 DATABASES['default'] = dj_database_url.config(conn_max_age=600)
-# print(os.getenv('DATABASE_URL'))
+
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -139,8 +125,6 @@ STATICFILES_DIRS = [
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 # Media files (Images)
-
-# MEDIA_URL = '/media/'
 MEDIA_ROOT = Path(BASE_DIR, 'media/')
 
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")

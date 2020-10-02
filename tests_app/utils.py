@@ -19,11 +19,11 @@ def get_answers(self):
     return answers
 
 
-# Генерация результата экзамена сдан(True)/не сдан(False)
-def get_result(self):
+# Генерация результата экзамена сдан(True)/не сдан(False) в
+# зависимости от необходимого количества правильных ответов (quantity_of_answers_to_done)
+def get_result(self, quantity_of_answers_to_done=8):
     correct_answers = get_correct_and_incorrect_answer(self)[0]
-    #
-    if len(correct_answers) >= 1:
+    if len(correct_answers) >= quantity_of_answers_to_done:
         result = True
     else:
         result = False

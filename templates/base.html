@@ -6,18 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Сдача экзаменов ГИМС">
     <meta name="author" content="Мартьянов Николай">
-
-
     <title>
         {% block title %}
             Test
         {% endblock %}
     </title>
-
     <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/4.5/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
     <!-- Favicons -->
     <link rel="shortcut icon" href="{% static 'tests_app/img/boat_start.jpg' %}" type="image/png">
     <!-- Custom styles for this template -->
@@ -30,14 +26,11 @@
         <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
             <div class="col-md-12 px-0" id="collapseCommon">
                 <h1 class="display-5 font-italic">Выберите категорию для сдачи экзамена ГИМС</h1>
-
-
                 {% for category in categories %}
                     <button class="btn btn-primary col-md-3 my-3" data-toggle="collapse" aria-expanded="false"
                             data-target="#{{ category.slug }}" aria-controls="{{ category.slug }}">{{ category.name }}
                     </button>
                 {% endfor %}
-
                 {% for category in categories %}
                     <div class="collapse" id="{{ category.slug }}" data-parent="#collapseCommon">
                         <h3 class="pb-4 mb-4 font-italic border-bottom">
@@ -49,7 +42,6 @@
                                 {% for ticket in category.tickets_as_list %}
                                     <a href="{{ ticket.get_absolute_url }}" class="btn btn-secondary" role="button"
                                     >{{ ticket.title|slice:"-2:" }}</a>
-{#                                    >{{ ticket.title }}</a>#}
                                 {% endfor %}
                             </div>
                         </div>
@@ -62,22 +54,21 @@
 <main role="main" class="container">
     <div class="row">
         <div id="content" class="col-md-9">
-            {% for key in category %}
-                <p>{{ key.name }}</p>
-            {% endfor %}
-
-            {% block content %}{% endblock %}
+            {% block content %}
+                <p class="mb-2 row col-md-12"><span class="font-weight-bold">Билеты ГИМС ВП:</span>Экзаменационные
+                    билеты для аттестации граждан на право управления маломерным судном во внутренних водах РФ</p>
+                <p class="mb-2 row col-md-12"><span class="font-weight-bold">Билеты ГИМС ВВП:</span>Экзаменационные
+                    билеты для аттестации граждан на право управления маломерным судном на внутренних водных путях РФ</p>
+                <p class="mb-2 row col-md-12"><span class="font-weight-bold">Билеты ГИМС МП:</span>Экзаменационные билеты
+                    для аттестации граждан на право управления маломерным судном в морских прибрежных водах РФ</p>
+            {% endblock %}
         </div>
-
-
         <aside class="col-md-3 sidebar">
             <div class="p-4 mb-3 bg-light rounded">
                 <h4 class="font-italic">О сайте</h4>
                 <p class="mb-0">Cайт для сдачи экзамена в ГИМС
                     (Государственная инспекция по маломерным судам)</p>
             </div>
-
-
             <div class="p-4">
                 <h4 class="font-italic">Контакты</h4>
                 <ol class="list-unstyled">
@@ -85,12 +76,8 @@
                 </ol>
             </div>
         </aside><!-- /.sidebar -->
-
     </div><!-- /.row -->
-
 </main><!-- /.container -->
-
-
 <footer class="text-muted">
     <div class="container">
         <hr>
@@ -112,6 +99,5 @@
         integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
         crossorigin="anonymous"></script>
 <script src="{% static "tests_app/js/test_list.js" %}"></script>
-
 </body>
 </html>

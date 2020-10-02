@@ -6,6 +6,7 @@ from tests_app.utils import get_all_correct_answers_from_db, get_answers, \
     get_result, get_correct_and_incorrect_answer
 from tests_app.models import TestCategory
 
+
 # Стартовая страница (Выбор категрии и билета)
 class IndexView(TemplateView):
     template_name = "base.html"
@@ -26,6 +27,7 @@ class TicketDetailView(DetailView):
         category = self.kwargs.get('category_slug', '')
         q = super().get_queryset()
         return q.filter(category__slug=category)
+
 
 # Страница результата
 class ResultView(DetailView):

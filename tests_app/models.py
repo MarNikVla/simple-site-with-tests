@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.db.models import F
 from django.db.models.functions import Lower, Substr
 
+
 # Категория билетов (ВПП,ВП,МП)
 class TestCategory(models.Model):
     name = models.CharField(max_length=200, db_index=True)
@@ -18,7 +19,7 @@ class TestCategory(models.Model):
 
     # Для итерации в templates tag
     def tickets_as_list(self):
-        result = [ticket for ticket in self.tickets.annotate(order=Substr('title',4)).all()]
+        result = [ticket for ticket in self.tickets.annotate(order=Substr('title', 4)).all()]
         return result
 
 
