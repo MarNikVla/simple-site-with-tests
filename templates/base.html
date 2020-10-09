@@ -58,8 +58,10 @@
                 <p class="mb-2 row col-md-12"><span class="font-weight-bold">Билеты ГИМС ВП:</span>Экзаменационные
                     билеты для аттестации граждан на право управления маломерным судном во внутренних водах РФ</p>
                 <p class="mb-2 row col-md-12"><span class="font-weight-bold">Билеты ГИМС ВВП:</span>Экзаменационные
-                    билеты для аттестации граждан на право управления маломерным судном на внутренних водных путях РФ</p>
-                <p class="mb-2 row col-md-12"><span class="font-weight-bold">Билеты ГИМС МП:</span>Экзаменационные билеты
+                    билеты для аттестации граждан на право управления маломерным судном на внутренних водных путях РФ
+                </p>
+                <p class="mb-2 row col-md-12"><span class="font-weight-bold">Билеты ГИМС МП:</span>Экзаменационные
+                    билеты
                     для аттестации граждан на право управления маломерным судном в морских прибрежных водах РФ</p>
             {% endblock %}
         </div>
@@ -81,15 +83,17 @@
 <footer class="text-muted">
     <div class="container">
         <hr>
-        <p class="float-right">
-            <a href="#">Back to top</a>
-        </p>
+        <ul class="float-right">
+            <ol><a href="#">Back to top</a></ol>
+            <ol><a href="/api">Simple api</a></ol>
+        </ul>
         <p>Шаблон был взят с <a href="https://getbootstrap.com/"
                                 title="Bootstrap" target="_blank">getbootstrap.com</a>,</p>
         <p>Для получения дополнительной информации посетите домашнюю страницу проекта <a
                 href="https://getbootstrap.com/" title="Bootstrap main" target="_blank"> Bootstrap</a> или прочитайте <a
                 href="https://getbootstrap.com/docs/4.5/getting-started/introduction/" title="Get started"
                 target="_blank">Руководство по началу использования</a>.</p>
+
     </div>
 </footer>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -98,6 +102,5 @@
 <script src="https://getbootstrap.com/docs/4.5/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
         crossorigin="anonymous"></script>
-<script src="{% static "tests_app/js/test_list.js" %}"></script>
 </body>
 </html>
