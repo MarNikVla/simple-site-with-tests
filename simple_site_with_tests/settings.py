@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'storages',
     'tests_app',
     'tests_app.templatetags.test_extra_tags',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -137,3 +138,14 @@ AWS_S3_REGION_NAME = os.getenv("AWS_S3_REGION_NAME")
 MEDIA_URL = 'http://%s.s3.amazonaws.com/gims/' % AWS_STORAGE_BUCKET_NAME
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 50
+}
