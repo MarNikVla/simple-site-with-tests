@@ -9,7 +9,7 @@ urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('admin/', admin.site.urls),
     path('tests/', include('tests_app.urls')),
-    path ('api/', include ('api.urls')),
+    path('api/', include('api.urls')),
 ]
 
 if settings.DEBUG:

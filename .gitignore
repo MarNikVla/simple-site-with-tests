@@ -203,4 +203,4 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-static/
+.static/
