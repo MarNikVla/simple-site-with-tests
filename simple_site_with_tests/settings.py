@@ -18,7 +18,7 @@ import dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
-# Загружаем виртуальное окружение из .env если он существует смотри .env_example
+# Р—Р°РіСЂСѓР¶Р°РµРј РІРёСЂС‚СѓР°Р»СЊРЅРѕРµ РѕРєСЂСѓР¶РµРЅРёРµ РёР· .env РµСЃР»Рё РѕРЅ СЃСѓС‰РµСЃС‚РІСѓРµС‚ СЃРјРѕС‚СЂРё .env_example
 dotenv_file = Path(BASE_DIR, ".env")
 if Path.is_file(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
@@ -82,7 +82,10 @@ WSGI_APPLICATION = 'simple_site_with_tests.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = dict()
-DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+if os.getenv("DOCKER_ENV"):
+    DATABASES['default'] = dj_database_url.config(env='DATABASE_URL_DOCKER', conn_max_age=600)
+else:
+    DATABASES['default'] = dj_database_url.config(env='DATABASE_URL',conn_max_age=600)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
