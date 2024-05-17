@@ -15,6 +15,7 @@ import os
 
 import dj_database_url
 import dotenv
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
@@ -26,11 +27,10 @@ if Path.is_file(dotenv_file):
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBAG_GIMS_TEST") == "True"
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS")
+ALLOWED_HOSTS = list(os.getenv("ALLOWED_HOSTS"))
 
 # Application definition
 
@@ -85,7 +85,7 @@ DATABASES = dict()
 if os.getenv("DOCKER_ENV"):
     DATABASES['default'] = dj_database_url.config(env='DATABASE_URL_DOCKER', conn_max_age=600)
 else:
-    DATABASES['default'] = dj_database_url.config(env='DATABASE_URL',conn_max_age=600)
+    DATABASES['default'] = dj_database_url.config(env='DATABASE_URL', conn_max_age=600)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -137,11 +137,9 @@ AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
 AWS_S3_SIGNATURE_VERSION = os.getenv("AWS_S3_SIGNATURE_VERSION")
 AWS_S3_REGION_NAME = os.getenv("AWS_S3_REGION_NAME")
 
-
 MEDIA_URL = 'http://%s.s3.amazonaws.com/gims/' % AWS_STORAGE_BUCKET_NAME
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
