@@ -11,5 +11,6 @@ RUN echo 'Hi, I am in your container'
 RUN pip install pipenv
 RUN pipenv install --system --deploy
 
-#RUN python manage.py runserver 127.0.0.1:8000
-#RUN echo 'Hi, I am in your container 2'
+#RUN gunicorn -c gunicorn.py simple_site_with_tests.wsgi
+#RUN python manage.py runserver 0.0.0.0:8000
+#RUN echo 'Hi, I am in your container 2' --access-logfile
