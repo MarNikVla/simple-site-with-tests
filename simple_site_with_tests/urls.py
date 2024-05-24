@@ -10,6 +10,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('tests/', include('tests_app.urls')),
     path('api/', include('api.urls')),
+    # path("debug/", include("debug_toolbar.urls")),
 ]
 
 if settings.DEBUG:
@@ -17,3 +18,7 @@ if settings.DEBUG:
                           document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)
+    import debug_toolbar
+    urlpatterns += [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ]
