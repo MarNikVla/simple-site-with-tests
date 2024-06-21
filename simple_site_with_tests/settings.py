@@ -19,8 +19,8 @@ import dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
-# Загружаем виртуальное окружение из .env если он существует смотри .env_example
-dotenv_file = Path(BASE_DIR, ".env")
+# Загружаем виртуальное окружение из .env_app если он существует смотри .env_example
+dotenv_file = Path(BASE_DIR, ".env_app")
 if Path.is_file(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
 

@@ -26,6 +26,7 @@ services:
     container_name: python
     build:
       context: .
+      dockerfile: Dockerfile
     volumes:
       - ./:/srv/www/gims-app
     expose:
