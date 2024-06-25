@@ -9,6 +9,7 @@ ENV DOCKER_ENV 1
 
 RUN echo 'Hi, I am in your container'
 RUN pip install pipenv
+RUN pipenv lock
 RUN pipenv install --system --deploy
 
 #RUN gunicorn -c gunicorn.py simple_site_with_tests.wsgi
